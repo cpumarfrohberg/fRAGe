@@ -1,17 +1,48 @@
-# Book Processing CLI
+# Books RAG - Question Answering System
 
-CLI tool for downloading and parsing technical books to Markdown format.
+A Retrieval-Augmented Generation (RAG) system for querying technical book contents using semantic search and LLMs.
 
 ## Features
 
-- Download books from CSV file
-- Parse PDF books to Markdown using MarkItDown
-- Clean CLI interface with Typer
+- ✅ Download technical books from CSV
+- ✅ Parse PDF books to Markdown
+- 🚧 Semantic search over book contents (TODO)
+- 🚧 Ask questions and get answers from books (TODO)
+- 🚧 LLM-powered responses with source citations (TODO)
 
 ## Installation
 
 ```bash
 uv sync
+```
+
+Set up your OpenAI API key:
+
+```bash
+export OPENAI_API_KEY="your-key-here"
+```
+
+Or create a `.env` file:
+
+```
+OPENAI_API_KEY=your-key-here
+```
+
+## Quick Start
+
+```bash
+# 1. Download books
+uv run books download
+
+# 2. Parse to markdown
+uv run books parse
+
+# TODO: RAG features coming soon
+# 3. Index books for RAG
+# uv run books index
+
+# 4. Ask questions
+# uv run books ask "What is a list comprehension in Python?"
 ```
 
 ## Usage
@@ -20,6 +51,7 @@ uv sync
 
 ```bash
 uv run books download
+uv run books download --books-dir ./custom/path
 ```
 
 ### Parse books to Markdown
@@ -27,28 +59,34 @@ uv run books download
 ```bash
 uv run books parse
 uv run books parse --output-dir ./markdown
-uv run books parse --no-save  # Preview only
 ```
 
-### Help
+### Index books for search (TODO)
 
 ```bash
-uv run books --help
-uv run books download --help
-uv run books parse --help
+# Coming soon
+# uv run books index
+# uv run books index --chunk-size 1000
 ```
 
-## Project Structure
+### Ask questions (TODO)
 
+```bash
+# Coming soon
+# uv run books ask "How do I use decorators in Python?"
+# uv run books ask "Explain recursion" --top-k 5
 ```
-.
-├── cli.py           # Typer CLI commands
-├── get_books.py     # Book downloading logic
-├── parse_to_md.py   # PDF parsing logic
-└── pyproject.toml   # Project configuration
+
+### Interactive mode (TODO)
+
+```bash
+# Coming soon
+# uv run books chat
 ```
+
 
 ## Requirements
 
 - Python >= 3.11
+- OpenAI API key (for RAG features - TODO)
 - See `pyproject.toml` for dependencies
