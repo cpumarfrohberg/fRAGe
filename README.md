@@ -1,6 +1,6 @@
-# Books RAG - Question Answering System
+# fRAGe - Question Answering System
 
-A Retrieval-Augmented Generation (RAG) system for querying technical book contents using semantic search and LLMs.
+A Retrieval-Augmented Generation (RAG) system for querying book contents using semantic search and LLMs.
 
 ## Features
 
