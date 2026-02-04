@@ -1557,12 +1557,12 @@ And we can use edges to get the list of edges:
 ’
 (
 
+Bob
+Alice
+
 Alice
 ,
 Bob
-
-Bob
-Alice
 
 ), (
 ), (

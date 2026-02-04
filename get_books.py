@@ -53,12 +53,3 @@ def get_book_files(output_dir: str) -> Generator[Path, None, None]:
             yield book_path
     except Exception as IterationError:
         print(f"\nError iterating files: {IterationError}")
-
-
-if __name__ == "__main__":
-    csv_path = download_books_csv(BooksConfig.CSV_URL.value, BooksConfig.DATA_DIR.value)
-    if csv_path:
-        download_all_books(csv_path, BooksConfig.BOOKS_DIR.value)
-
-    for book in get_book_files(BooksConfig.BOOKS_DIR.value):
-        print(f"Processing: {book.name}")

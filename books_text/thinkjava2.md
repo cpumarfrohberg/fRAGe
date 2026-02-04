@@ -4683,19 +4683,19 @@ of how many digits the numbers have:
 18
 20
 
-8
-
 7
+
+5
 
 6
 
-5
+8
+
+27
 
 24
 
 21
-
-27
 
 18
 

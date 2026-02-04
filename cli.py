@@ -1,13 +1,10 @@
 import os
-from typing import Optional
 
 import typer
 
 from config import BooksConfig
 from get_books import download_all_books, download_books_csv
 from parse_to_md import parse_to_md
-
-DEFAULT_PREVIEW_LENGTH = 500
 
 app = typer.Typer(help="Book processing CLI")
 
@@ -47,18 +44,15 @@ def parse(
     books_dir: str = typer.Option(
         BooksConfig.BOOKS_DIR.value, help="Directory containing PDF books"
     ),
-    output_dir: Optional[str] = typer.Option(
+    output_dir: str = typer.Option(
         BooksConfig.MARKDOWN_DIR.value, help="Output directory for markdown files"
     ),
     save: bool = typer.Option(True, help="Save markdown to files"),
-    preview_length: int = typer.Option(
-        DEFAULT_PREVIEW_LENGTH, help="Preview length in characters (when not saving)"
-    ),
 ):
     """Parse PDF books to Markdown."""
     typer.echo(f"📖 Parsing books from {books_dir}...\n")
 
-    if save and output_dir:
+    if save:
         os.makedirs(output_dir, exist_ok=True)
         typer.echo(f"💾 Saving markdown files to {output_dir}\n")
 
@@ -67,15 +61,15 @@ def parse(
     for filename, markdown in parse_to_md(books_dir):
         md_filename = filename.replace(".pdf", ".md")
 
-        if save and output_dir:
+        if save:
             md_path = os.path.join(output_dir, md_filename)
             with open(md_path, "w", encoding="utf-8") as f:
                 f.write(markdown)
             typer.echo(f"✓ Saved: {md_filename} ({len(markdown):,} characters)")
         else:
+            line_count = len(markdown.splitlines())
             typer.echo(f"--- {filename} ---")
-            typer.echo(markdown[:preview_length])
-            typer.echo(f"... (total: {len(markdown):,} characters)\n")
+            typer.echo(f"Total: {line_count:,} lines, {len(markdown):,} characters\n")
 
         parsed_count += 1
 
