@@ -16,73 +16,19 @@ A Retrieval-Augmented Generation (RAG) system for querying book contents using s
 uv sync
 ```
 
-Set up your OpenAI API key:
+## Commands
 
+**Download books:**
 ```bash
-export OPENAI_API_KEY="your-key-here"
+uv run books download [--books-dir PATH]
 ```
 
-Or create a `.env` file:
-
-```
-OPENAI_API_KEY=your-key-here
-```
-
-## Quick Start
-
+**Parse PDFs to markdown:**
 ```bash
-# 1. Download books
-uv run books download
-
-# 2. Parse to markdown
-uv run books parse
-
-# TODO: RAG features coming soon
-# 3. Index books for RAG
-# uv run books index
-
-# 4. Ask questions
-# uv run books ask "What is a list comprehension in Python?"
+uv run books parse [--output-dir PATH] [--no-save]
 ```
-
-## Usage
-
-### Download books
-
-```bash
-uv run books download
-uv run books download --books-dir ./custom/path
-```
-
-### Parse books to Markdown
-
-```bash
-uv run books parse
-uv run books parse --output-dir ./markdown
-```
-
-### Index books for search (TODO)
-
-```bash
-# Coming soon
-# uv run books index
-# uv run books index --chunk-size 1000
-```
-
-### Ask questions (TODO)
-
-```bash
-# Coming soon
-# uv run books ask "How do I use decorators in Python?"
-# uv run books ask "Explain recursion" --top-k 5
-```
-
-### Interactive mode (TODO)
-
-```bash
-# Coming soon
-# uv run books chat
-```
+- Default saves to `./books_text/`
+- Use `--no-save` to preview line/character counts without saving
 
 
 ## Requirements
